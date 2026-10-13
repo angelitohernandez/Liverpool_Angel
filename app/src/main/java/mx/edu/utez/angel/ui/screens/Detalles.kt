@@ -1,8 +1,10 @@
 package mx.edu.utez.angel.ui.screens
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -15,6 +17,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -88,12 +92,23 @@ fun Detalles(
                         .background(Color(0xFFF5EEF8), RoundedCornerShape(16.dp)),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text(
-                        text = producto.brand,
-                        fontSize = 28.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color(0xFFC2185B)
-                    )
+                    if (producto.image != null) {
+                        Image(
+                            painter = painterResource(id = producto.image),
+                            contentDescription = producto.name,
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(16.dp),
+                            contentScale = ContentScale.Fit
+                        )
+                    } else {
+                        Text(
+                            text = producto.brand,
+                            fontSize = 28.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color(0xFFC2185B)
+                        )
+                    }
                 }
                 Spacer(modifier = Modifier.height(16.dp))
             }
@@ -147,23 +162,44 @@ fun Detalles(
             }
 
             item {
-                Text(text = "Opiniones de clientes", fontSize = 18.sp, fontWeight = FontWeight.Bold)
-                Spacer(modifier = Modifier.height(8.dp))
-                producto.reviews.forEach { review ->
-                    Card(
-                        colors = CardDefaults.cardColors(containerColor = Color(0xFFF9F9F9)),
-                        shape = RoundedCornerShape(12.dp),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(bottom = 8.dp)
-                    ) {
-                        Column(modifier = Modifier.padding(12.dp)) {
-                            Text(text = review.title, fontWeight = FontWeight.Bold, fontSize = 14.sp)
-                            Spacer(modifier = Modifier.height(4.dp))
-                            Text(text = review.comment, color = Color.DarkGray, fontSize = 13.sp)
+                Text(
+                    text = "Opiniones de clientes (${producto.reviews.size})",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold
+                )
+                Spacer(modifier = Modifier.height(12.dp))
+            }
+
+            items(producto.reviews) { review ->
+                Card(
+                    colors = CardDefaults.cardColors(containerColor = Color(0xFFF9F9F9)),
+                    shape = RoundedCornerShape(12.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 12.dp)
+                ) {
+                    Column(modifier = Modifier.padding(14.dp)) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(text = review.author, fontWeight = FontWeight.Bold, fontSize = 14.sp)
+                            Row {
+                                repeat(review.rating.toInt()) {
+                                    Icon(Icons.Default.Star, contentDescription = null, tint = Color(0xFFFFB300), modifier = Modifier.size(14.dp))
+                                }
+                            }
                         }
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Text(text = review.title, fontWeight = FontWeight.SemiBold, fontSize = 13.sp, color = Color.Black)
+                        Spacer(modifier = Modifier.height(2.dp))
+                        Text(text = review.comment, color = Color.DarkGray, fontSize = 13.sp)
                     }
                 }
+            }
+
+            item {
                 Spacer(modifier = Modifier.height(80.dp))
             }
         }

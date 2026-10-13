@@ -1,5 +1,6 @@
 package mx.edu.utez.angel.ui.components
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -10,6 +11,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -37,11 +40,22 @@ fun ProductoCard(
                     .clickable { onClick() },
                 contentAlignment = Alignment.Center
             ) {
-                Text(
-                    text = producto.brand,
-                    fontWeight = FontWeight.Bold,
-                    color = Color(0xFF8E24AA)
-                )
+                if (producto.image != null) {
+                    Image(
+                        painter = painterResource(id = producto.image),
+                        contentDescription = producto.name,
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(8.dp),
+                        contentScale = ContentScale.Fit
+                    )
+                } else {
+                    Text(
+                        text = producto.brand,
+                        fontWeight = FontWeight.Bold,
+                        color = Color(0xFF8E24AA)
+                    )
+                }
             }
 
             Spacer(modifier = Modifier.height(8.dp))

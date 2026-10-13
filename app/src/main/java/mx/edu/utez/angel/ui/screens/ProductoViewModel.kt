@@ -5,6 +5,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import mx.edu.utez.angel.R
 import mx.edu.utez.angel.models.ProductDetail
 import mx.edu.utez.angel.models.Review
 
@@ -24,15 +25,19 @@ class ProductoViewModel : ViewModel() {
         _productos.value = listOf(
             ProductDetail(
                 id = "1",
-                brand = "DIOR",
-                name = "Perfume Dior Sauvage Eau de Parfum 100 ml",
-                price = 3450.00,
+                brand = "ARMAF",
+                name = "Armaf Odyssey Mandarine Sky Eau de Parfum 100 ml",
+                price = 599.00,
                 rating = 4.8f,
-                reviewCount = 128,
+                reviewCount = 4,
                 isFreeShipping = true,
-                description = "Una composición rotundamente fresca, dictada por un nombre que suena como un manifiesto. Una obra creada entre la brutalidad y la elegancia, con notas de Bergamota de Reggio di Calabria y Ámbar.",
+                description = "Una fragancia gourmand cítrica y oriental vibrante. Destaca por sus notas de mandarina, naranja, caramelo, haba tonka y un toque dulce amaderado perfecto para hacerse notar.",
+                image = R.drawable.mandarin,
                 reviews = listOf(
-                    Review("Cliente", "Excelente aroma y duración", "\"El perfume es 100% original, llegó rápido y bien empaquetado.\"", 5.0f)
+                    Review("Carlos M.", "Aroma increíble y dulce", "\"El olor a mandarina y caramelo es riquísimo, dura bastante tiempo en piel y ropa.\"", 5.0f),
+                    Review("Ana P.", "Súper recomendado", "\"Llegó muy bien empaquetado y el envase en forma de termo/odyssey está genial.\"", 5.0f),
+                    Review("Luis G.", "Excelente proyección", "\"Por el precio de $599 ofrece una calidad y duración sorprendentes.\"", 4.5f),
+                    Review("Sofia T.", "Huele delicioso", "\"Una de mis fragancias favoritas, totalmente recomendado para regalar.\"", 4.5f)
                 )
             ),
             ProductDetail(
@@ -41,9 +46,16 @@ class ProductoViewModel : ViewModel() {
                 name = "Smart TV LG 55\" 4K UHD ThinQ AI",
                 price = 9999.00,
                 rating = 4.7f,
-                reviewCount = 85,
+                reviewCount = 4,
                 isFreeShipping = true,
-                description = "Pantalla Smart TV 4K de alta calidad con procesador de alta velocidad e inteligencia artificial ThinQ AI integrada."
+                description = "Pantalla Smart TV 4K de alta calidad con procesador de alta velocidad e inteligencia artificial ThinQ AI integrada.",
+                image = R.drawable.television,
+                reviews = listOf(
+                    Review("Fernando R.", "Excelente imagen", "\"La calidad 4K se ve increíble, los colores son muy vivos.\"", 5.0f),
+                    Review("Maria S.", "Muy rápido el sistema", "\"El sistema operativo webOS responde de inmediato.\"", 5.0f),
+                    Review("Jorge K.", "Buen sonido", "\"El sonido integrado es fuerte, aunque mejor con barra de sonido.\"", 4.0f),
+                    Review("Diana V.", "Gran relación calidad-precio", "\"Llegó al día siguiente de la compra en excelente estado.\"", 5.0f)
+                )
             ),
             ProductDetail(
                 id = "3",
@@ -51,19 +63,33 @@ class ProductoViewModel : ViewModel() {
                 name = "Tenis Nike Air Max Para Hombre",
                 price = 2899.00,
                 rating = 4.5f,
-                reviewCount = 42,
+                reviewCount = 4,
                 isFreeShipping = true,
-                description = "Comodidad suprema y amortiguación clásica Air Max para el uso diario con un diseño deportivo distintivo."
+                description = "Comodidad suprema y amortiguación clásica Air Max para el uso diario con un diseño deportivo distintivo.",
+                image = R.drawable.tenis,
+                reviews = listOf(
+                    Review("Roberto L.", "Muy cómodos", "\"Excelentes para caminar largas distancias sin cansarte.\"", 5.0f),
+                    Review("Andrés H.", "Diseño genial", "\"Combinan con todo y la suela Air Max amortigua muy bien.\"", 4.5f),
+                    Review("Valeria M.", "Talla perfecta", "\"Pídelos en tu talla exacta, ajustan super bien al pie.\"", 4.5f),
+                    Review("Gabriel C.", "Satisfecho", "\"La calidad del material se siente premium como todo lo de Nike.\"", 4.0f)
+                )
             ),
             ProductDetail(
                 id = "4",
-                brand = "MICHAEL KORS",
-                name = "Bolsa MK tote Piel Saffiano Rosa",
-                price = 4200.00,
+                brand = "KELLOGG'S",
+                name = "Cereal Zucaritas Kellogg's 710 g",
+                price = 85.00,
                 rating = 4.9f,
-                reviewCount = 19,
+                reviewCount = 4,
                 isFreeShipping = true,
-                description = "Bolsa de mano fabricada en piel Saffiano de alta durabilidad con detalles dorados elegantes."
+                description = "Hojuelas de maíz escarchadas con azúcar, adicionadas con vitaminas y hierro. ¡Sacan el tigre que llevas dentro!",
+                image = R.drawable.zucaritas,
+                reviews = listOf(
+                    Review("Mateo R.", "¡Súper crujientes!", "\"Las mejores hojuelas con leche fría, el empaque rinde bastante.\"", 5.0f),
+                    Review("Laura V.", "Un clásico del desayuno", "\"Llegó bien empaquetado y la caja no venía aplastada.\"", 5.0f),
+                    Review("Daniela S.", "Excelente sabor", "\"A mis hijos les encantan para antes de ir a la escuela.\"", 5.0f),
+                    Review("Oscar M.", "Buen precio", "\"Súper práctico pedirlo por aquí con el envío rápido.\"", 4.5f)
+                )
             )
         )
     }
