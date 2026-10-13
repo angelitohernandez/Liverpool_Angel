@@ -139,7 +139,7 @@ fun Detalles(
                     Spacer(modifier = Modifier.height(6.dp))
                     Surface(color = Color(0xFFE8F5E9), shape = RoundedCornerShape(8.dp)) {
                         Text(
-                            text = "🚚 Envío gratis",
+                            text = " Envío gratis",
                             color = Color(0xFF2E7D32),
                             fontWeight = FontWeight.Medium,
                             fontSize = 13.sp,
